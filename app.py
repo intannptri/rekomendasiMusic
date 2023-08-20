@@ -1,6 +1,6 @@
 from flask import Flask, render_template, Response, jsonify
 import gunicorn
-from camera import *
+from camera import FPS, WebcamVideoStream, VideoCamera, music_rec
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Hanya tampilkan pesan kesalahan dan lebih tinggi, hilangkan pesan informasi.
 
