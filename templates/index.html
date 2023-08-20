@@ -39,7 +39,7 @@
               </div>
               <div class="card-body">
                 <img class="outer-shadow" style="padding: 20px; display: inline-block; margin: auto; width: 85%;"
-                  id="bg" class="center img-fluid" src="{{ url_for('video_feed') }}" />
+                  id="bg" class="center img-fluid" src="{{ url_for('video_feed', _external=True, _scheme='https') }}" />
               </div>
             </div>
           </div>
