@@ -1,5 +1,5 @@
 from flask import Flask, render_template, Response, jsonify
-#import gunicorn
+import gunicorn
 from camera import *
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Hanya tampilkan pesan kesalahan dan lebih tinggi, hilangkan pesan informasi.
