@@ -59,7 +59,7 @@ class FPS:
 class WebcamVideoStream:
     	
 		def __init__(self, src=0):
-			self.stream = cv2.VideoCapture(src,cv2.CAP_DSHOW)
+			self.stream = cv2.VideoCapture(0)
 			(self.grabbed, self.frame) = self.stream.read()
 			self.stopped = False
 
@@ -90,7 +90,7 @@ class VideoCamera(object):
 	def get_frame(self):
 		global cap1
 		global df1
-		cap1 = cv2.VideoCapture(0)
+		cap1 = WebcamVideoStream(src=0).start()
 		image = cap1.read()
 		image=cv2.resize(image,(600,500))
 		gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
