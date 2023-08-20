@@ -90,7 +90,7 @@ class VideoCamera(object):
 	def get_frame(self):
 		global cap1
 		global df1
-		cap1 = WebcamVideoStream(src=0).start()
+		cap1 = WebcamVideoStream(src=0)
 		image = cap1.read()
 		image=cv2.resize(image,(600,500))
 		gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
