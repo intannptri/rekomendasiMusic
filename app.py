@@ -14,6 +14,7 @@ import pandas as pd
 from flask import Flask, render_template, Response, jsonify
 #import gunicorn
 #from camera import *
+app = Flask(__name__)
 
 face_cascade=cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 ds_factor=0.6
