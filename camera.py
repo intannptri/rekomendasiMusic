@@ -59,7 +59,7 @@ class FPS:
 class WebcamVideoStream:
     	
 		def __init__(self, src=0):
-			self.stream = cv2.VideoCapture(0)
+			self.stream = cv2.VideoCapture(src,cv2.CAP_DSHOW)
 			(self.grabbed, self.frame) = self.stream.read()
 			self.stopped = False
 
