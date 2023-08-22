@@ -27,9 +27,8 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
-    return "Hello World"
-    #return Response(gen(VideoCamera()),
-                    #mimetype='multipart/x-mixed-replace; boundary=frame')
+    
+    return Response(gen(VideoCamera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/t')
 def gen_table():
