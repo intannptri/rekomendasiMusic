@@ -88,7 +88,45 @@ class WebcamVideoStream:
 class VideoCamera(object):
 	
 	def get_frame(self):
-		return print("hello")
+		global cap1
+		global df1
+		cap1 = WebcamVideoStream(src=0).start()
+		image = cap1.read()
+		image=cv2.resize(image,(600,500))
+		gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+		face_rects=face_cascade.detectMultiScale(gray,1.3,5)
+		df1 = pd.read_csv(music_dist[show_text[0]])
+		df1 = df1[['Name','Album','Artist']]
+		df1 = df1.head(15)
+		allfaces=[]
+		rects=[]
+		for (x,y,w,h) in face_rects:
+			cv2.rectangle(image,(x,y),(x+w, y+h),(0,255,0),2)
+			rol_gray_frame = gray[y:y + h, x:x + w]
+			rol_gray_frame = cv2.resize(rol_gray_frame, (48,48), interpolation=cv2.INTER_AREA)
+			allfaces.append(rol_gray_frame)
+			rects.append((x, w, y, h))
+			rol = rol_gray_frame.astype("float") / 255.0
+			rol = img_to_array(rol)
+			rol = np.expand_dims(rol, axis=0)
+			prediction = emotion_model.predict(rol)[0]
+			label = emotion_dict[prediction.argmax()]
+
+			
+			show_text[0] = prediction.argmax()
+			#print("===========================================",music_dist[show_text[0]],"===========================================")
+			#print(df1)
+			cv2.putText(image, label, (x+20, y-20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+			df1 = music_rec()
+			
+		global last_frame1
+		last_frame1 = image.copy()
+		pic = cv2.cvtColor(last_frame1, cv2.COLOR_BGR2RGB)     
+		img = Image.fromarray(last_frame1)
+		img = np.array(img)
+		ret, jpeg = cv2.imencode('.jpg', img)
+		return jpeg.tobytes(), df1
+)
 def music_rec():
 	# print('---------------- Value ------------', music_dist[show_text[0]])
 	df = pd.read_csv(music_dist[show_text[0]])
