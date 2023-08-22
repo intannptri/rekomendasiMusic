@@ -87,7 +87,8 @@ class WebcamVideoStream:
 ''' Class for reading video stream, generating prediction and recommendations '''
 class VideoCamera(object):
 	
-	return print("hello")
+	def get_frame(self):
+		return print("hello")
 def music_rec():
 	# print('---------------- Value ------------', music_dist[show_text[0]])
 	df = pd.read_csv(music_dist[show_text[0]])
