@@ -126,7 +126,6 @@ class VideoCamera(object):
 		img = np.array(img)
 		ret, jpeg = cv2.imencode('.jpg', img)
 		return jpeg.tobytes(), df1
-)
 def music_rec():
 	# print('---------------- Value ------------', music_dist[show_text[0]])
 	df = pd.read_csv(music_dist[show_text[0]])
